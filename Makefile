@@ -20,7 +20,7 @@ docker_login:
 
 docker_push:
 	docker push $$DOCKER_USERNAME/$$APP_NAME:$$GITHUB_RUN_NUMBER; \
-	docker push $$DOCKER_USERNAME/$$APP_NAME:latest
+	docker push $$DOCKER_USERNAME/$$APP_NAME
 
 docker_deploy: docker_build docker_login docker_push
 
