@@ -10,7 +10,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.13
+      - name: setup go
         uses: actions/setup-go@v2-beta
         with:
           go-version: 1.13
@@ -26,7 +26,7 @@ jobs:
 #        run: go build -o dist/service src/main.go
 
       - name: Docker build
-        run: docker_build
+        run: make docker_build
 #        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
 #
 #      - name: Docker login
