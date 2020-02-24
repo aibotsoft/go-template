@@ -29,7 +29,8 @@ jobs:
         run: make docker_build
 #        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
 #
-#      - name: Docker login
+      - name: Docker login
+        run: make docker_login
 #        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 #
 #      - name: Docker push
