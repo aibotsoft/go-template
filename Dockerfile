@@ -2,4 +2,4 @@ FROM scratch
 
 COPY dist/ .
 
-CMD ["/run"]
+CMD ["/service"]
