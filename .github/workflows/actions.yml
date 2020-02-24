@@ -22,7 +22,7 @@ jobs:
         run: make build
 
       - name: Run
-        run: make run
+        run: make run_build
 #        run: go build -o dist/service src/main.go
 
       - name: Docker build
@@ -30,7 +30,8 @@ jobs:
 #        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
 #
       - name: Docker login
-        run: make docker_login
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username $DOCKER_USERNAME --password-stdin
+#        run: make docker_login
 #        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 #
 #      - name: Docker push
