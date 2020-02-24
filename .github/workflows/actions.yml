@@ -16,19 +16,24 @@ jobs:
           go-version: 1.13
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
 
       - name: Build
-        run: go build -o dist/service src/main.go
+        run: make build
 
-      - name: Docker build
-        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
+      - name: Run
+        run: make run
 
-      - name: Docker login
-        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+#        run: go build -o dist/service src/main.go
 
-      - name: Docker push
-        run: docker image push $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER
+#      - name: Docker build
+#        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
+#
+#      - name: Docker login
+#        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+#
+#      - name: Docker push
+#        run: docker image push $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER
 
 #  deploy:
 #    env:
