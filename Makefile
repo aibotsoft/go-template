@@ -21,10 +21,6 @@ docker_login:
 docker_push:
 	docker push $$DOCKER_USERNAME/$$GITHUB_WORKFLOW:$$GITHUB_RUN_NUMBER
 
-docker_deploy:
-	echo "fuck off"
+docker_deploy: docker_build docker_login docker_push
 
-hello2:
-	echo "fuck off2"
-
-envtest: hello && hello2
+#envtest: hello && hello2

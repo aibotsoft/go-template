@@ -3,10 +3,7 @@ on: [push]
 
 jobs:
   build:
-    env:
-      CGO_ENABLED: 0
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -21,16 +18,20 @@ jobs:
       - name: Build
         run: make build
 
-      - name: Run
-        run: make run_build
+      - name: Deploy
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: make docker_deploy
+
+#      - name: Run
+#        run: make run_build
 #        run: go build -o dist/service src/main.go
 
-      - name: Docker build
-        run: make docker_build
+#      - name: Docker build
+#        run: make docker_build
 #        run: docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
 #
-      - name: Docker login
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username $DOCKER_USERNAME --password-stdin
+#      - name: Docker login
 #        run: make docker_login
 #        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 #
@@ -80,3 +81,5 @@ jobs:
 #        with:
 #          name: dist
 #          path: dist/
+          #      CGO_ENABLED: 0
+        #      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
