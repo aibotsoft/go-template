@@ -3,3 +3,6 @@ build:
 
 run:
 	dist/service
+
+docker_build:
+	docker image build -f Dockerfile -t $DOCKER_USERNAME/$GITHUB_WORKFLOW:$GITHUB_RUN_NUMBER .
